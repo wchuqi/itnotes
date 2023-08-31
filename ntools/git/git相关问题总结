@@ -1,0 +1,51 @@
+# git下载问题
+
+描述：
+
+不知道是不是vpn的原因，`git clone https.git`的时候，一直报错：
+
+```shell
+@LAPTOP-F50UTFJI MINGW64 /d/code/github
+$ git clone https://github.com/git
+Cloning into 'itnotes'...
+fatal: unable to access 'https://github.com.git/': Failed to connect to github.com port 443 after 21051 ms: Timed out
+```
+
+怀疑是`hosts`配置的原因，排查了不是。
+
+遂改用ssh的方式
+
+```shell
+$ ssh-keygen -t rsa -C "mail.com"
+
+@LAPTOP-F50UTFJI MINGW64 xxxxxxxx
+$ git clone git@github.com:xxx.git
+Cloning into 'xxx'...
+The authenticity of host 'github.com (20.205.243.166)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zxxxxxxxxxx.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+```
+
+可以下载了。
+
+再次尝试`git clone https`的方式：
+
+```shell
+xxxx@LAPTOP-F50UTFJI MINGW64 xxxx
+$ git clone https://github.com/xxx.git
+Cloning into 'itnotes'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+```
+
+分析：
+
+应该是ssh的方式时，`Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.`起了作用。
