@@ -121,7 +121,7 @@ chatgpt学习后
 你是xxx博主，想创作一个xxxx主题的视频，需要你来写xxxmin的文案
 ```
 
-![image-20230908002203472](D:\code\github\itnotes\tech\ai\chatgpt4.assets\image-20230908002203472.png)
+![image-20230908002203472](.\chatgpt4.assets\image-20230908002203472.png)
 
 
 
